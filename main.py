@@ -8,11 +8,11 @@ task_arr.append(Task("yum install m2crypto"))
 task_arr.append(Task("pip install shadowsocks"))
 user_file = open("user.json")
 p1 = open("/etc/shadowsocks.json",'w')
-if p1.writable():
+try:
     print "正在写入user——json"
     p1.write(user_file)
     p1.close()
-else:
+except :
     print "写入json失败"
 user_list = json.load(user_file.read())
 task_arr.append(Task("/usr/bin/ssserver -c /etc/shadowsocks.json -d start"))
