@@ -3,10 +3,17 @@
   <head>
     <meta charset="utf-8">
     <title>{{ title }}</title>
+    <style >
+      .box{
+        width:100%;
+        height:"80px"
+        background-color:#8B4513;
+      }
+    </style>
   </head>
   <body>
 {% for port in users %}
-<p>port:{{port}} password:{{ users[port] }}</p>
+<div class="box"><p>port:{{port}} password:{{ users[port] }}</p></div>
   {% endfor %}
   </body>
 </html>
