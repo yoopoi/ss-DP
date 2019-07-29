@@ -14,7 +14,7 @@ try:
     p1.close()
 except :
     print "写入json失败"
-user_list = json.load(user_file.read())
+user_list = json.load(user_file)
 task_arr.append(Task("/usr/bin/ssserver -c /etc/shadowsocks.json -d start"))
 task_arr.append(Task("yum install firewalld"))
 task_arr.append(Task("systemctl start firewalld"))
