@@ -13,7 +13,7 @@ user_json = json.dumps(user_list)
 p1 = open("/etc/shadowsocks.json",'w')
 try:
     print "正在写入user——json"
-    p1.write(user_file.read())
+    p1.write(user_json)
     p1.close()
 except Exception as e :
     print "写入json失败"
