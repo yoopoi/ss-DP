@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 import os
 import json
+import time
 from task import Task
 task_arr = []
 task_arr.append(Task("yum install python-setuptools && easy_install pip"))
@@ -23,3 +24,6 @@ for port in users:
     #print(users[port])
     task_arr.append(Task("firewall-cmd --permanent --zone=public --add-port="+str(port)+"/tcp"))
     task_arr.append(Task("firewall-cmd --reload"))
+task_arr.append(Task("ssserver -c /etc/shadowsocks.json -d stop"))
+time.sleep(1)
+task_arr.append(Task("ssserver -c /etc/shadowsocks.json -d start"))
