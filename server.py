@@ -13,4 +13,5 @@ def check():
         password =  request.args.get('password', '')
         if username == "admin" and password == "123":
             return "ok"
-        else return "fail"
+        else:
+            return "fail"
