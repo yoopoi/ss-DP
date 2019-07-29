@@ -263,7 +263,7 @@
     <body>
 
       <div class="bg_text">
-      	niconiconi 测试
+      	webserver 测试
       </div>
       <!-- <div onselectstart="return false;" class="line" style="top:100px"  ><div class="dot" id="dot_shape"></div><div class="num" onselectstart="return false;" id="num_shape">0</div></div> -->
 
@@ -312,7 +312,7 @@
 
         </div>
         <div class="footer">
-design by yazawa_nico 2018 niconiconi!
+design by yazawa_nico 2019 niconiconi!
         </div>
     </body>
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
@@ -407,8 +407,8 @@ design by yazawa_nico 2018 niconiconi!
 
 
                 $.ajax({
-                    url: 'check.php',
-                    type: 'get',
+                    url: '/check',
+                    type: 'post',
                     data: {
                         name: login_user_name,
                         password: login_user_password,
