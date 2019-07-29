@@ -21,7 +21,7 @@ def check():
             if port == username and users[port] == password:
                 return "ok"
         return "fail"
-@app.route('/check',methods=['GET', 'POST'])
+@app.route('/admin',methods=['GET', 'POST'])
 def admin():
     p1 = open("/etc/shadowsocks.json")
     users = json.load(p1)["port_password"]
