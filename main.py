@@ -1,7 +1,6 @@
 # -*- coding: UTF-8 -*-
 import os
 import json
-import
 import sys
 from task import Task
 task_arr = []
