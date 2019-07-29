@@ -1,0 +1,463 @@
+<html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=2">
+        <style>
+            body{
+                background: #333;
+            }
+            input {
+                width: 90%;
+                max-width: 250px;
+                position: relative;
+                left: 20px;
+                outline: none;
+                border: none;
+                height: 30px;
+                color: rgba(0,0,0,0.8);
+                margin-top: 10px;
+                background: rgba(255,255,255,0.8);
+                text-indent: 5px;
+                border-radius: 2px;
+                box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+                opacity: 0.5;
+                transition: all 0.5s;
+                font-size: 15px;
+                border: 1px solid #ddd;
+
+            }
+
+                input:hover {
+                    opacity: 1;
+                    border: 1px solid #2196F3;
+                    box-shadow: 0px 0px 10px #2196F3;
+                }
+
+
+
+            .check_button {
+                border-radius: 0px;
+                background: rgb(255,255,255);
+                opacity: 1;
+                transition: all 0.5s;
+                cursor: move;
+            }
+
+
+            .error {
+                position: absolute;
+                width: 60px;
+                right: 40px;
+                margin-top: -90px;
+                color: crimson;
+            }
+            .login_panel{
+                width: 450px;
+                height: 650px;
+                position: absolute;
+                background:#f1f1f1;
+                border:1px solid #ddd;
+                box-shadow:-1px 2px 10px #1f1f1f;
+                z-index:10;
+                left:50%;
+                margin-left: -225px;
+                top:10%;
+                border-radius:5px;
+                box-shadow: 0px 0px 10px rgba(255,255,255,0.2);
+            }
+            .del {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                border: 1px solid rgba(0,0,0,0.4);
+                box-shadow: -1px 3px 5px #1f1f1f;
+                position:relative;
+                left:100%;
+                top:-20px;
+                background:#ddd;
+                margin-left:-20px;
+                cursor:pointer;
+                transition:all 0.5s ease;
+                z-index:100;
+            }
+                .del:hover {
+                    transform: rotate(90deg);
+                    box-shadow: 1px 3px 5px #1f1f1f;
+                }
+                .del::before {
+                    content: "";
+                    position: absolute;
+                    left: 18px;
+                    top: 7px;
+                    width: 6px;
+                    z-index:100;
+                    transform: rotate(45deg);
+                    background:deeppink;
+                    z-index: 1000;
+                    height: 25px;
+                    border-radius: 5px;
+                }
+                .del::after {
+                    content: "";
+                    position: absolute;
+                    left: 18px;
+                    top: 7px;
+                    width: 6px;
+                    transform: rotate(-45deg);
+                    background: deeppink;
+                    z-index: 1000;
+                    height: 25px;
+                    border-radius: 5px;
+                }
+                .dragable{
+                    position:relative;
+                    width:100%;
+                    height:50px;
+                    background:#fff;
+                    cursor:move;
+                    left:0px;
+                    top:-40px;
+                    z-index:0;
+                }
+            .upload_photo {
+                position: relative;
+                width: 200px;
+                left: 50%;
+                background-image: url(../static/hello.png);
+                background-size: 100%;
+                background-repeat: no-repeat;
+                background-position-y: 50px;
+                background-position-x: 10px;
+                transform: translate(-50%,0);
+                margin-top: -20px;
+                height: 200px;
+                border-radius: 50%;
+                background: #fff;
+                border: 1px solid #ddd;
+                box-shadow: -3px 5px 5px #ddd;
+                transition: all 0.5s;
+                cursor:pointer;
+                margin-bottom:30px;
+                margin-bottom:20px;
+            }
+                .upload_photo:hover {
+                    border: 1px solid #2196F3;
+
+                }
+            #uploadFile{
+                position:absolute;
+                visibility:hidden;
+                left:0px;
+                top:0px;
+
+            }
+            .login_user_name{
+                width:50%;
+                height:50px;
+                max-width:500px;
+                left:50%;
+                transform:translate(-50%,0);
+                font-size:1.5em;
+                text-indent:10px;
+            }
+
+            .login_user_password {
+                width: 50%;
+                height: 50px;
+                max-width: 500px;
+                left: 50%;
+                transform: translate(-50%,0);
+                font-size: 1.5em;
+                text-indent: 10px;
+            }
+
+            .toggle-button {
+
+                vertical-align: middle;
+                position:relative;
+                left:50%;
+                transform:translate(-50%,0);
+                top:5%;
+            }
+            .cubeshape {
+                width: 300px;
+                text-align: center;
+                margin: 0 auto;
+                height: 60px;
+                text-transform: uppercase;
+                font-family: sans-serif;
+            }
+            .cube {
+                -webkit-transition: -webkit-transform .33s;
+                transition: transform .33s; /* Animate the transform properties */
+                -webkit-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+            }
+            .first_cube, .second_cube {
+                background: #fff;
+                height: 60px;
+                width: 100%;
+                position: relative;
+                border: 1px solid #ddd;
+                box-shadow: 0px 0px 5px rgba(0,0,0,0.4);
+            }
+
+            .first_cube {
+                border-bottom: 4px solid #ddd;
+                -webkit-transform: translateZ(30px);
+                transform: translateZ(30px);
+            }
+
+            .second_cube {
+                border-top: 4px solid #ddd;
+                margin-top: -2px;
+                -webkit-transform: rotateX(-90deg) translateZ(-30px);
+                transform: rotateX(-90deg) translateZ(-30px);
+            }
+
+            .login_a {
+                font-size: 25px;
+                line-height: 15px;
+                opacity: 0.7;
+                color: red;
+            }
+            .login_a1 {
+                font-size: 25px;
+                line-height: 15px;
+                opacity: 0.7;
+                color: red;
+            }
+            .ssi-uploader{
+                opacity:0;
+            }
+            .bg_text{
+              position: absolute;
+              z-index: 0;
+              font-size: 100px;
+              opacity: 0.5;
+              color:#fff;
+              width: 100%;
+              height: 100px;
+              line-height: 100px;
+              text-align: center;
+              left: 50%;
+              margin-left: -50%;
+              top:50%;
+              margin-top:-50px;
+            }
+            .footer{
+              position: relative;
+              width: 300px;
+              height: 20px;
+              font-weight: 600;
+              color: #fff;
+              opacity: 0.5;
+              left: 50%;
+              margin-left: -150px;
+              top: 10px;
+              z-index: 1000;
+              text-align: center;
+              margin-bottom: 20px;
+            }
+        </style>
+    </head>
+    <body>
+
+      <div class="bg_text">
+      	niconiconi 测试
+      </div>
+      <!-- <div onselectstart="return false;" class="line" style="top:100px"  ><div class="dot" id="dot_shape"></div><div class="num" onselectstart="return false;" id="num_shape">0</div></div> -->
+
+      <canvas id="canvas" ></canvas>
+        <div class="login_panel">
+            <div class="del"></div>
+            <div class="dragable"></div>
+            <div class=""></div>
+            <input type="file" multiple name="user_img" id="uploadFile" value="" />
+            <div class="upload_photo"></div>
+            <input type="text" class="login_user_name" name="login_user_name" placeholder="请输入user name" />
+            <input type="password" class="login_user_password" name="login_user_password" placeholder="请输入password" />
+            <div class="toggle-button">
+                <div class="cubeshape cube">
+                    <div class="first_cube">
+                        <h1><a class="login_a" href="#">确认提交</a></h1>
+                    </div>
+                    <div class="second_cube">
+                        <h1><a class="login_a1" href="#">正在上传</a></h1>
+                        <svg style="position:relative;left:175px;transform:translate(-25%,0);top:-20px;" version="1.1" id="L5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             viewBox="0 0 200 200" enable-background="new 0 0 0 0" xml:space="preserve">
+                        <circle fill="#fff" stroke="none" cx="6" cy="50" r="6">
+                        <animateTransform attributeName="transform"
+                                          dur="1s"
+                                          type="translate"
+                                          values="0 15 ; 0 -15; 0 15"
+                                          repeatCount="indefinite"
+                                          begin="0.1" /></circle>
+                        <circle fill="#fff" stroke="none" cx="30" cy="50" r="6">
+                        <animateTransform attributeName="transform"
+                                          dur="1s"
+                                          type="translate"
+                                          values="0 10 ; 0 -10; 0 10"
+                                          repeatCount="indefinite"
+                                          begin="0.2" /></circle>
+                        <circle fill="#fff" stroke="none" cx="54" cy="50" r="6">
+                        <animateTransform attributeName="transform"
+                                          dur="1s"
+                                          type="translate"
+                                          values="0 5 ; 0 -5; 0 5"
+                                          repeatCount="indefinite"
+                                          begin="0.3" /></circle></svg>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="footer">
+design by yazawa_nico 2018 niconiconi!
+        </div>
+    </body>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="main.js"></script>
+    <script>
+            $('.login').click(function () {
+
+                if (flag == 0) {
+                    flag = 1;
+                    $('.show_box').css({ height: "200px" });
+                }
+                else {
+                    flag = 0;
+                    $('.show_box').css({ height: "0px" });
+                }
+
+
+
+            });
+            $('.register').click(function () {
+                if (flag == 1) {
+                    flag = 0;
+                    $('.show_box').css({ height: "0px" });
+                }
+                $('.login_a').text("确认提交");
+                setTimeout(function () {
+                    $('.login_panel').css({ opacity: '1', zIndex: '1000' });
+
+                }, 500);
+                $('.login_panel').css({ display: "block", left: '25%', top: '10%' });
+            });
+            $('.del').click(function () {
+                setTimeout(function () {
+                    $('.login_panel').css({ display: "none", zIndex: '-10' });
+
+
+                }, 500);
+                $('.login_panel').css({ opacity: '0' });
+            });
+            $('#openid').click(function () {
+                $(this).css({ width: "100%", height: "50px", fontSize: "25px" });
+                $('#password').css({ width: "90%", height: "30", fontSize: "15px" })
+            });
+            $('#password').click(function () {
+                $(this).css({ width: "100%", height: "50px", fontSize: "25px" });
+                $('#openid').css({ width: "90%", height: "30", fontSize: "15px" })
+            });
+
+            $('.check_button').click(function () {
+                $(this).val("提交中");
+                $(this).css({});
+            })
+            console.log("123");
+            var data = {
+                data: JSON.stringify({
+                    "value": 'asdf'
+                })
+            };
+
+
+
+            mouseable = false;
+            // $('.dragable').mousedown(function (e) {
+            //     mouseable = true;
+            //     var offx = e.offsetX;
+            //     var offy = e.offsetY;
+            //     var xx = e.pageX;
+            //     var yy = e.pageY;
+            //
+            //
+            //     $('.login_panel').css({ left: xx - offx, top: yy - offy - $(document).scrollTop(), transfrom: "translate(0,0)", transition: '0s' });
+            //     $(document).mousemove(function (k) {
+            //         if (mouseable) {
+            //             $('.login_panel').css({ left: k.pageX - offx, top: k.pageY - offy - $(document).scrollTop() });
+            //         }
+            //
+            //     });
+            // });
+            // $('.dragable').mouseup(function () {
+            //     mouseable = false;
+            //     $('.login_panel').css({ transition: '0.5s ease' });
+            // });
+
+            $('.cube').click(function () {
+
+                $('.cube').css({
+                    transform: 'rotateX(90deg)',
+                    transform: 'rotateX(90deg)'
+                });
+                var login_user_name = $('.login_user_name').val();
+                var login_user_password = $('.login_user_password').val();
+
+
+                $.ajax({
+                    url: 'check.php',
+                    type: 'get',
+                    data: {
+                        name: login_user_name,
+                        password: login_user_password,
+                    },
+                    success: function (msg) {
+                        console.log(msg);
+                        setTimeout(function () {
+                            $('.cube').css({
+                                transform: 'rotateX(0deg)',
+                                transform: 'rotateX(0deg)'
+                            });
+
+                             // setTimeout(function () {
+                             //       $('.del').click();
+                             //       window.location.href="/";
+                             //   }, 1000);
+
+
+                            if(msg=="fail"){
+                              $('.login_a').text("登陆失败哦");
+                            }
+                            else if (msg=="请填写用户名哦！") {
+                              $('.login_a').text("请填写用户名哦!");
+                            }
+                            else if (msg=="请填写密码哦！") {
+                              $('.login_a').text("请填写密码哦!");
+                            }
+                            else {
+                                $('.login_a').text("登陆成功啦!");
+                              setTimeout(function () {
+                                  $('.del').click();
+                                  window.location.href="login.php";
+                              }, 1000);
+                            }
+
+                        }, 1000);
+                    },
+                    error: function () {
+                        consloe.log("ajax传值失败");
+                    }
+                });
+                console.log(user.img);
+            });
+            $(document).keydown(function(e){
+              if(e.keyCode=="13"){
+                console.log("checkPoint");
+                $('.cube').click();
+              }
+            });
+
+    </script>
+</html>
