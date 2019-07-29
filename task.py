@@ -8,7 +8,7 @@ class Task:
         self.process_task()
     def process_task(self):
         self.ack = os.system(self.task_command)
-        if self.ack==256:
+        if self.ack==255:
             print '\033[1;33;43'
             print "task执行失败:"+self.task_command
             print '\033[0m'
