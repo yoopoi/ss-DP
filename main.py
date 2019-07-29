@@ -4,9 +4,9 @@ import json
 import time
 from task import Task
 task_arr = []
-task_arr.append(Task("yum install python-setuptools && easy_install pip -y "))
-task_arr.append(Task("yum install m2crypto -y "))
-task_arr.append(Task("pip install shadowsocks -y "))
+task_arr.append(Task("yum install python-setuptools && easy_install pip "))
+task_arr.append(Task("yum install m2crypto "))
+task_arr.append(Task("pip install shadowsocks "))
 user_file = open("user.json")
 user_list = json.load(user_file)
 user_json = json.dumps(user_list)
