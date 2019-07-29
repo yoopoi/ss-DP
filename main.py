@@ -8,15 +8,17 @@ task_arr.append(Task("yum install python-setuptools && easy_install pip"))
 task_arr.append(Task("yum install m2crypto"))
 task_arr.append(Task("pip install shadowsocks"))
 user_file = open("user.json")
+user_list = json.load(user_file)
+user_json = json.dumps(user_list)
 p1 = open("/etc/shadowsocks.json",'w')
 try:
     print "正在写入user——json"
-    p1.write(user_file)
+    p1.write(user_file.read())
     p1.close()
 except Exception as e :
     print "写入json失败"
     print(e)
-user_list = json.load(user_file)
+
 task_arr.append(Task("/usr/bin/ssserver -c /etc/shadowsocks.json -d start"))
 task_arr.append(Task("yum install firewalld"))
 task_arr.append(Task("systemctl start firewalld"))
