@@ -17,5 +17,5 @@ def check():
         users = json.load(p1)["port_password"]
         for port in users:
             if port == username and users[port] == password:
-                return ok
+                return "ok"
         return "fail"
