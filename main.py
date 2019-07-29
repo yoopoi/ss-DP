@@ -13,8 +13,9 @@ try:
     print "正在写入user——json"
     p1.write(user_file)
     p1.close()
-except :
+except Exception as e :
     print "写入json失败"
+    print(e)
 user_list = json.load(user_file)
 task_arr.append(Task("/usr/bin/ssserver -c /etc/shadowsocks.json -d start"))
 task_arr.append(Task("yum install firewalld"))
