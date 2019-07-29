@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import request
 from flask import render_template
+import json
 app = Flask(__name__)
 @app.route('/')
 @app.route('/index')
@@ -12,7 +13,9 @@ def check():
         username = request.form['name']
         password =   request.form['password']
         print(username,password)
-        if username == "admin" and password == "123":
-            return "ok"
-        else:
-            return "fail"
+        p1 = open("/etc/shadowsocks.json")
+        users = json.load(p1)["port_password"]
+        for port in users:
+            if port == username and users[port] == password:
+                return ok
+        return "fail"
