@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import os
 import json
 from task import Task
@@ -8,17 +9,15 @@ task_arr.append(Task("pip install shadowsocks"))
 user_file = open("user.json")
 p1 = open("/etc/shadowsocks.json",'w')
 if p1.writable():
-    print("正在写入user——json")
+    print "正在写入user——json"
     p1.write(user_file)
     p1.close()
 else:
-    print("写入json失败")
-user_list = json.load(user_file)
-print(user_list)
+    print "写入json失败"
+user_list = json.load(user_file.read())
 task_arr.append(Task("/usr/bin/ssserver -c /etc/shadowsocks.json -d start"))
 task_arr.append(Task("yum install firewalld"))
 task_arr.append(Task("systemctl start firewalld"))
-print(user_list["port_password"])
 users = user_list["port_password"]
 for port in users:
     #print(users[port])
