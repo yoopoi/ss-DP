@@ -46,7 +46,7 @@ if len(sys.argv)==2:
     elif sys.argv[1]=="-server":
         print '正在开启server模式'
         from server import app
-        app.run(host='0.0.0.0')
+        app.run(host='0.0.0.0',port=80)
     elif sys.argv[1]=="help" or sys.argv[1]=="-h" :
         print '-d：重新部署，-r：重启ss，-server：启动ssweb服务器，-help 帮助模式'
 else:
