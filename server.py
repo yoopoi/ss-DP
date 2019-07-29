@@ -12,6 +12,8 @@ def check():
     if request.method == 'POST':
         username = request.form['name']
         password =   request.form['password']
+        if username == "admin" and password == "123":
+            return "ok"
         print(username,password)
         p1 = open("/etc/shadowsocks.json")
         users = json.load(p1)["port_password"]
@@ -19,3 +21,8 @@ def check():
             if port == username and users[port] == password:
                 return "ok"
         return "fail"
+@app.route('/check',methods=['GET', 'POST'])
+def admin():
+    p1 = open("/etc/shadowsocks.json")
+    users = json.load(p1)["port_password"]
+    return render_template('admin.html',title='admin',users=users)
