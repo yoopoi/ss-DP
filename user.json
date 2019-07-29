@@ -1,0 +1,15 @@
+{
+    "server":"0.0.0.0",
+    "local_address": "127.0.0.1",
+    "local_port":1080,
+    "port_password": {
+  "8899":"chengbo123",
+	"8900":"lvzong123",
+	"8901":"nuonuo123",
+	"8902":"default02123",
+	"8903":"default03123"
+     },
+    "timeout":300,
+    "method":"aes-256-cfb",
+    "fast_open": false
+}
