@@ -9,8 +9,8 @@ def index():
 @app.route('/check',methods=['GET', 'POST'])
 def check():
     if request.method == 'POST':
-        username = request.args.get('name', '')
-        password =  request.args.get('password', '')
+        username = request.form['name']
+        password =   request.form['password']
         print(username,password)
         if username == "admin" and password == "123":
             return "ok"
