@@ -17,6 +17,7 @@
         font-size:30px;
         text-indent:30px;
         margin-bottom:20px;
+        color:rgba(0,0,0,0.5);
       }
       .table{
         position:relative;
@@ -75,15 +76,39 @@
       .nav-button:hover{
         background-color:#EE799F;
       }
+      input{
+        width:200px;
+        height:30px;
+        margin-top:10px;
+        margin-bottom:10px;
+        background-color:rgba(245,245,245,0.8);
+        border:none;
+        outline:none;
+        border-radius:2px;
+        margin-left:10px;
+        text-indent:10px;
+        font-size:18px;
+        color:rgba(0,0,0,0.5);
+      }
     </style>
   </head>
   <body>
-  <div class="nav">这里是admin页面哦 <div class="nav-button">添加</div></div>
+  <div class="nav">XC Shadows <div class="nav-button add">添加</div></div>
   <div class="table">
     {% for port in users %}
-    <div class="box">port:{{port}} password:{{ users[port] }}<div class="button">修改</div><div class="button">删除</div></div>
+    <div class="box">port:<input type="text" name="" class="port" value="{{port}}"> 密码:<input type="text" class="password" name="" value="{{ users[port] }}"><div class="button change">修改</div><div class="button del">删除</div></div>
       {% endfor %}
   </div>
 
   </body>
+  <script src="https://www.jq22.com/jquery/jquery-2.1.1.js"></script>
+  <script type="text/javascript">
+$(".add").click(function(){
+  var last_port = $(".port:last-child");
+  var last_password = $(".password:last-child");
+  last_port = parseInt(last_port)+1;
+  
+  $(".table").append('  <div class="box">port:<input type="text" name="" class="port" value="'+last_port+'"> 密码:<input type="text" class="password" name="" value="'+last_password+'"><div class="button change">修改</div><div class="button del">删除</div></div>');
+});
+  </script>
 </html>
