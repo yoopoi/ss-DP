@@ -28,4 +28,4 @@ def admin():
     return render_template('admin.html',title='admin',users=users)
 @app.route('/register')
 def register():
-    
+    return "正在开发中！！！"
