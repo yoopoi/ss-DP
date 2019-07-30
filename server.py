@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 from flask import Flask
 from flask import request
 from flask import render_template
@@ -28,4 +29,4 @@ def admin():
     return render_template('admin.html',title='admin',users=users)
 @app.route('/register')
 def register():
-    return "正在开发中！！！"
+    return "comming soon!"
