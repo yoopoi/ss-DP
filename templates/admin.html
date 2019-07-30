@@ -103,12 +103,11 @@
   </body>
   <script src="https://www.jq22.com/jquery/jquery-2.1.1.js"></script>
   <script type="text/javascript">
-$(".add").click(function(){
-  var last_port = $(".port:last-child");
-  var last_password = $(".password:last-child");
-  last_port = parseInt(last_port)+1;
-  
-  $(".table").append('  <div class="box">port:<input type="text" name="" class="port" value="'+last_port+'"> 密码:<input type="text" class="password" name="" value="'+last_password+'"><div class="button change">修改</div><div class="button del">删除</div></div>');
-});
+    $(document).ready(function(){
+      $(".add").click(function(){
+        $(".table").append('  <div class="box">port:<input type="text" name="" class="port" value="port"> 密码:<input type="text" class="password" name="" value="password"><div class="button change">修改</div><div class="button del">删除</div></div>');
+      });
+    });
+
   </script>
 </html>
