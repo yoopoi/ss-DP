@@ -151,7 +151,7 @@
 
             }
             .login_user_name{
-                width:50%;
+                width:300px;
                 height:50px;
                 max-width:500px;
                 left:50%;
@@ -161,7 +161,7 @@
             }
 
             .login_user_password {
-                width: 50%;
+                width: 300px;
                 height: 50px;
                 max-width: 500px;
                 left: 50%;
@@ -169,7 +169,46 @@
                 font-size: 1.5em;
                 text-indent: 10px;
             }
-
+            .tool-box{
+              position: relative;
+              width: 95%;
+              height:50px;
+              background: #fff;
+              margin-left: 2.5%;
+              margin-top:-30px;
+              margin-bottom: 20px;
+            }
+            .login-box{
+              position: relative;
+              width:50%;
+              height: 50px;
+              float: left;
+              line-height: 50px;
+              text-align: center;
+              font-size: 20px;
+              color:rgba(0,0,0,0.5);
+              cursor: pointer;
+            }
+            .register-box{
+              position: relative;
+              width:50%;
+              height: 50px;
+              float: left;
+              line-height: 50px;
+              text-align: center;
+              font-size: 20px;
+              color:rgba(0,0,0,0.5);
+              cursor: pointer;
+            }
+            .box-active{
+                background-color: rgba(200, 205, 255, 0.5);
+            }
+            .login-box:hover{
+              background-color: rgba(200, 205, 255, 0.5);
+            }
+            .register-box:hover{
+              background-color: rgba(200, 205, 255, 0.5);
+            }
             .toggle-button {
 
                 vertical-align: middle;
@@ -245,7 +284,7 @@
               margin-top:-50px;
             }
             .footer{
-              position: relative;
+              position: fixed;
               width: 300px;
               height: 20px;
               font-weight: 600;
@@ -256,7 +295,10 @@
               top: 10px;
               z-index: 1000;
               text-align: center;
-              margin-bottom: 20px;
+              bottom: 20px;
+            }
+            .register-panel{
+              display: none;
             }
         </style>
     </head>
@@ -271,11 +313,22 @@
         <div class="login_panel">
             <div class="del"></div>
             <div class="dragable"></div>
-            <div class=""></div>
-            <input type="file" multiple name="user_img" id="uploadFile" value="" />
-            <div class="upload_photo"></div>
-            <input type="text" class="login_user_name" name="login_user_name" placeholder="请输入user name" />
-            <input type="password" class="login_user_password" name="login_user_password" placeholder="请输入password" />
+            <div class="tool-box">
+              <div class="login-box box-active">
+                登陆
+              </div>
+              <div class="register-box">
+                注册
+              </div>
+            </div>
+            <div class="login-panel">
+              <input type="text" class="login_user_name login_name" name="login_user_name" placeholder="请输入user name" />
+              <input type="password" class="login_user_password login_password" name="login_user_password" placeholder="请输入password" />
+            </div>
+            <div class="register-panel">
+              <input type="text" class=" register_name login_user_name" name="register_user_name" placeholder="请输入用户名" />
+              <input type="password" class="login_user_password login_password" name="register_user_password" placeholder="请输入你想要的密码" />
+            </div>
             <div class="toggle-button">
                 <div class="cubeshape cube">
                     <div class="first_cube">
@@ -371,8 +424,21 @@ design by yazawa_nico 2019 niconiconi!
                     "value": 'asdf'
                 })
             };
-
-
+            var is_login = true;
+            $(".login-box").click(function() {
+              is_login = true;
+              $(this).addClass("box-active");
+              $(".register-box").removeClass("box-active");
+              $(".register-panel").css("display","none");
+              $(".login-panel").css("display","block");
+            });
+            $(".register-box").click(function() {
+              is_login = false;
+              $(this).addClass("box-active");
+              $(".login-box").removeClass("box-active");
+              $(".login-panel").css("display","none");
+              $(".register-panel").css("display","block");
+            });
 
             mouseable = false;
             // $('.dragable').mousedown(function (e) {
@@ -402,55 +468,100 @@ design by yazawa_nico 2019 niconiconi!
                     transform: 'rotateX(90deg)',
                     transform: 'rotateX(90deg)'
                 });
-                var login_user_name = $('.login_user_name').val();
-                var login_user_password = $('.login_user_password').val();
+                if(is_login){
+                  var login_user_name = $('.login_name').val();
+                  var login_user_password = $('.login_password').val();
 
 
-                $.ajax({
-                    url: '/check',
-                    type: 'post',
-                    data: {
-                        name: login_user_name,
-                        password: login_user_password,
-                    },
-                    success: function (msg) {
-                        console.log(msg);
-                        setTimeout(function () {
-                            $('.cube').css({
-                                transform: 'rotateX(0deg)',
-                                transform: 'rotateX(0deg)'
-                            });
+                  $.ajax({
+                      url: '/check',
+                      type: 'post',
+                      data: {
+                          name: login_user_name,
+                          password: login_user_password,
+                      },
+                      success: function (msg) {
+                          console.log(msg);
+                          setTimeout(function () {
+                              $('.cube').css({
+                                  transform: 'rotateX(0deg)',
+                                  transform: 'rotateX(0deg)'
+                              });
 
-                             // setTimeout(function () {
-                             //       $('.del').click();
-                             //       window.location.href="/";
-                             //   }, 1000);
+                               // setTimeout(function () {
+                               //       $('.del').click();
+                               //       window.location.href="/";
+                               //   }, 1000);
 
 
-                            if(msg=="fail"){
-                              $('.login_a').text("登陆失败哦");
-                            }
-                            else if (msg=="请填写用户名哦！") {
-                              $('.login_a').text("请填写用户名哦!");
-                            }
-                            else if (msg=="请填写密码哦！") {
-                              $('.login_a').text("请填写密码哦!");
-                            }
-                            else {
-                                $('.login_a').text("登陆成功啦!");
-                              setTimeout(function () {
-                                  $('.del').click();
-                                  window.location.href="login.php";
-                              }, 1000);
-                            }
+                              if(msg=="fail"){
+                                $('.login_a').text("登陆失败哦");
+                              }
+                              else if (msg=="请填写用户名哦！") {
+                                $('.login_a').text("请填写用户名哦!");
+                              }
+                              else if (msg=="请填写密码哦！") {
+                                $('.login_a').text("请填写密码哦!");
+                              }
+                              else {
+                                  $('.login_a').text("登陆成功啦!");
+                                setTimeout(function () {
+                                    $('.del').click();
+                                    window.location.href="login.php";
+                                }, 1000);
+                              }
 
-                        }, 1000);
-                    },
-                    error: function () {
-                        consloe.log("ajax传值失败");
-                    }
-                });
-                console.log(user.img);
+                          }, 1000);
+                      },
+                      error: function () {
+                          consloe.log("ajax传值失败");
+                      }
+                  });
+                  console.log(user.img);
+                }else{
+                  var register_user_name = $('.register_name').val();
+                  var register_user_password = $('.register_password').val();
+
+
+                  $.ajax({
+                      url: '/register',
+                      type: 'post',
+                      data: {
+                          name: login_user_name,
+                          password: login_user_password,
+                      },
+                      success: function (msg) {
+                          console.log(msg);
+                          setTimeout(function () {
+                              $('.cube').css({
+                                  transform: 'rotateX(0deg)',
+                                  transform: 'rotateX(0deg)'
+                              });
+
+                               // setTimeout(function () {
+                               //       $('.del').click();
+                               //       window.location.href="/";
+                               //   }, 1000);
+
+
+                              if(msg=="ok"){
+                                $('.login_a').text("注册成功了哦");
+                              }
+
+                              else {
+                                  $('.login_a').text("注册失败啦!");
+
+                              }
+
+                          }, 1000);
+                      },
+                      error: function () {
+                          consloe.log("ajax传值失败");
+                      }
+                  });
+                  console.log(user.img);
+                }
+
             });
             $(document).keydown(function(e){
               if(e.keyCode=="13"){
