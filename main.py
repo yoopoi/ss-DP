@@ -33,8 +33,7 @@ if len(sys.argv)==2:
             task_arr.append(Task("ssserver -c /etc/shadowsocks.json -d stop"))
             time.sleep(1)
             task_arr.append(Task("ssserver -c /etc/shadowsocks.json -d start"))
-            if bbr_task.ack==255:
-                task_arr.append(Task("sudo wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh"))
+            task_arr.append(Task("sudo wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh"))
 
         except Exception as e :
             print "发生预期之外的错误┭┮﹏┭┮"
