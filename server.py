@@ -66,4 +66,4 @@ def register():
             file1.write(data_json)
             file1.close()
 
-    return "comming soon!"
+    return "1000"
