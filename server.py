@@ -22,7 +22,8 @@ def check():
                 if user["username"] == username and users["password"] == password:
                     print("1000")
                     return "1000"
-        except :
+        except Exception as e :
+            print(e)
             return "1001"
         return "1001"
 @app.route('/admin',methods=['GET', 'POST'])
