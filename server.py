@@ -36,9 +36,10 @@ def register():
     if request.method == 'POST':
         username = request.form['name']
         password =   request.form['password']
-        file = open('data.json','w')
+        file = open('data.json')
+        file1 = open('data.json','w')
         try:
-            data_json = json.load(file.read())
+            data_json = json.load()
             for user in data_json:
                 if user["username"]==username:
                     return "1001"
@@ -48,8 +49,8 @@ def register():
             data_dict["port"] = str(8904+len(data_json))
             data_json.append(data_dict)
             data_json = json.dumps(data)
-            file.write(data_json)
-            file.close()
+            file1.write(data_json)
+            file1.close()
         except Exception as e:
             print(e)
             data = []
@@ -59,7 +60,7 @@ def register():
             data_dict["port"] = 8904
             data.append(data_dict)
             data_json = json.dumps(data)
-            file.write(data_json)
-            file.close()
+            file1.write(data_json)
+            file1.close()
 
     return "comming soon!"
