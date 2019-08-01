@@ -50,7 +50,8 @@ def register():
             data_json = json.dumps(data)
             file.write(data_json)
             file.close()
-        except:
+        except Exception as e:
+            print(e)
             data = []
             data_dict = {}
             data_dict["username"] = username
