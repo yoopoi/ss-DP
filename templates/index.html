@@ -327,7 +327,7 @@
             </div>
             <div class="register-panel">
               <input type="text" class=" register_name login_user_name" name="register_user_name" placeholder="请输入用户名" />
-              <input type="password" class="login_user_password login_password" name="register_user_password" placeholder="请输入你想要的密码" />
+              <input type="password" class="login_user_password register_password" name="register_user_password" placeholder="请输入你想要的密码" />
             </div>
             <div class="toggle-button">
                 <div class="cubeshape cube">
@@ -514,10 +514,10 @@ design by yazawa_nico 2019 niconiconi!
                           }, 1000);
                       },
                       error: function () {
-                          consloe.log("ajax传值失败");
+                          console.log("ajax传值失败");
                       }
                   });
-                  console.log(user.img);
+
                 }else{
                   var register_user_name = $('.register_name').val();
                   var register_user_password = $('.register_password').val();
@@ -556,7 +556,7 @@ design by yazawa_nico 2019 niconiconi!
                           }, 1000);
                       },
                       error: function () {
-                          consloe.log("ajax传值失败");
+                          console.log("ajax传值失败");
                       }
                   });
                   console.log(user.img);
