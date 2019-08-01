@@ -16,9 +16,11 @@ def check():
         print(username,password)
         p1 = open("data.json")
         users = json.load(p1)
+        print(users)
         try:
             for user in users:
                 if user["username"] == username and users["password"] == password:
+                    print("1000")
                     return "1000"
         except :
             return "1001"
