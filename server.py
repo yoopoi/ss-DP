@@ -36,7 +36,7 @@ def register():
     if request.method == 'POST':
         username = request.form['name']
         password =   request.form['password']
-        file = open('data.json')
+        file = open('data.json','r')
         file1 = open('data.json','w')
         try:
             data_json = json.load(file)
