@@ -31,7 +31,7 @@ def admin():
     p1 = open("/etc/shadowsocks.json")
     users = json.load(p1)["port_password"]
     return render_template('admin.html',title='admin',users=users)
-@app.route('/user',method=["POST","GET"])
+@app.route('/user',methods=["POST","GET"])
 def user():
     return render_template('user.html',title='admin',users=users)
 @app.route('/register',methods=['GET', 'POST'])
