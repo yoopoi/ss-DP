@@ -14,7 +14,7 @@ def check():
         username = request.form['name']
         password =   request.form['password']
         print(username,password)
-        p1 = open("data.json")
+        p1 = open("data.json",'r')
         users = json.loads(p1)
         try:
             for user in users:
