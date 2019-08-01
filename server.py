@@ -47,20 +47,20 @@ def register():
             data_dict["password"] = password
             data_dict["port"] = str(8904+len(data_json))
             data_json.append(data_dict)
-            data_json = json.dumps(data)
+            data_json = json.dumps(data_json)
             file.close()
             file1 = open('data.json','w')
             file1.write(data_json)
             file1.close()
         except Exception as e:
             print(e)
-            data = []
+            newdata = []
             data_dict = {}
             data_dict["username"] = username
             data_dict["password"] = password
             data_dict["port"] = 8904
-            data.append(data_dict)
-            data_json = json.dumps(data)
+            newdata.append(data_dict)
+            data_json = json.dumps(newdata)
             file.close()
             file1 = open('data.json','w')
             file1.write(data_json)
