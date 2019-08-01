@@ -45,7 +45,7 @@ def register():
             data_dict = {}
             data_dict["username"] = username
             data_dict["password"] = password
-            data_dict["port"] = 8904+len(data_json)
+            data_dict["port"] = str(8904+len(data_json))
             data_json.append(data_dict)
             data_json = json.dumps(data)
             file.write(data_json)
