@@ -14,8 +14,8 @@ def check():
         username = request.form['name']
         password =   request.form['password']
         print(username,password)
-        p1 = open("data.json",'r')
-        users = json.loads(p1)
+        p1 = open("data.json")
+        users = json.load(p1)
         try:
             for user in users:
                 if user["username"] == username and users["password"] == password:
