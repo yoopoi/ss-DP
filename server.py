@@ -39,7 +39,7 @@ def register():
         file = open('data.json')
         file1 = open('data.json','w')
         try:
-            data_json = json.load()
+            data_json = json.load(file)
             for user in data_json:
                 if user["username"]==username:
                     return "1001"
