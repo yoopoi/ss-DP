@@ -19,7 +19,7 @@ def check():
         print(users)
         try:
             for user in users:
-                if user["username"] == username and users["password"] == password:
+                if user["username"] == username and user["password"] == password:
                     print("1000")
                     return "1000"
         except Exception as e :
