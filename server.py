@@ -37,7 +37,6 @@ def register():
         username = request.form['name']
         password =   request.form['password']
         file = open('data.json','r')
-        file1 = open('data.json','w')
         try:
             data_json = json.load(file)
             for user in data_json:
@@ -49,6 +48,8 @@ def register():
             data_dict["port"] = str(8904+len(data_json))
             data_json.append(data_dict)
             data_json = json.dumps(data)
+            file.close()
+            file1 = open('data.json','w')
             file1.write(data_json)
             file1.close()
         except Exception as e:
@@ -60,6 +61,8 @@ def register():
             data_dict["port"] = 8904
             data.append(data_dict)
             data_json = json.dumps(data)
+            file.close()
+            file1 = open('data.json','w')
             file1.write(data_json)
             file1.close()
 
