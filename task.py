@@ -16,3 +16,8 @@ class Task:
             print '\033[1;31;40m'
             print "task执行成功:"+self.task_command
             print '\033[0m'
+    def auto_check(self):
+        if self.task_command.split(" ")[0]=="yum":
+            self.task_command += " -y"
+        else:
+            print "此task无法执行自动确认"
