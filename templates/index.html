@@ -501,7 +501,7 @@ design by yazawa_nico 2019 niconiconi!
                                   $('.login_a').text("登陆成功啦!");
                                 setTimeout(function () {
                                     $('.del').click();
-                                    window.location.href="login.php";
+                                    //window.location.href="login.php";
                                 }, 1000);
                               }
 
@@ -538,13 +538,15 @@ design by yazawa_nico 2019 niconiconi!
                                //   }, 1000);
 
 
-                              if(msg=="ok"){
+                              if(msg=="1000"){
                                 $('.login_a').text("注册成功了哦");
                               }
 
-                              else {
+                              else if(msg=="1001"){
                                   $('.login_a').text("注册失败啦!");
 
+                              }else if(msg=="1002"){
+                                $('.login_a').text("用户名已经存在了哦！");
                               }
 
                           }, 1000);

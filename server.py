@@ -41,7 +41,7 @@ def register():
             data_json = json.load(file)
             for user in data_json:
                 if user["username"]==username:
-                    return "1001"
+                    return "1002"
             data_dict = {}
             data_dict["username"] = username
             data_dict["password"] = password
