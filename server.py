@@ -38,7 +38,7 @@ def register():
         password =   request.form['password']
         file = open('data.json','w')
         try:
-            data_json = json.load(file);
+            data_json = json.load(file.read())
             for user in data_json:
                 if user["username"]==username:
                     return "1001"
