@@ -1,4 +1,4 @@
-var view = document.getElementById("view"); //获取canvas元素标签
+var view = document.getElementById("canvas"); //获取canvas元素标签
 var WIDTH="700";
 var HEIGHT="700";
 var cards = [];
