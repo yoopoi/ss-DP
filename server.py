@@ -10,7 +10,6 @@ app.config["SECRET_KEY"] = "secret_key"
 def findUser(username,password):
     p1 = open("data.json")
     users = json.load(p1)
-    print(users)
     try:
         for user in users:
             if user["username"] == username and user["password"] == password:
