@@ -42,7 +42,7 @@ def admin():
 def user():
     res = findUser(session["username"], session["password"])
     if res:
-        return render_template('user.html',title='admin',users=users)
+        return render_template('user.html',title='admin',users=session["username"])
     else:
         return "access deny"
 @app.route('/register',methods=['GET', 'POST'])
