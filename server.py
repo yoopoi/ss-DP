@@ -2,8 +2,21 @@
 from flask import Flask
 from flask import request
 from flask import render_template
+from flask import session
 import json
 app = Flask(__name__)
+app.config["SECRET_KEY"] = "secret_key"
+def findUser(username,password):
+    p1 = open("data.json")
+    users = json.load(p1)
+    print(users)
+    try:
+        for user in users:
+            if user["username"] == username and user["password"] == password:
+                return True
+    except Exception as e :
+        print(e)
+        return False
 @app.route('/')
 @app.route('/index')
 def index():
@@ -13,19 +26,13 @@ def check():
     if request.method == 'POST':
         username = request.form['name']
         password =   request.form['password']
-        print(username,password)
-        p1 = open("data.json")
-        users = json.load(p1)
-        print(users)
-        try:
-            for user in users:
-                if user["username"] == username and user["password"] == password:
-                    print("1000")
-                    return "1000"
-        except Exception as e :
-            print(e)
-            return "1001"
-        return "1001"
+        res = findUser(username, password)
+        if res:
+            session["username"] = username
+            session["password"] = password
+            return "10001"
+        else:
+            return "1000"
 @app.route('/admin',methods=['GET', 'POST'])
 def admin():
     p1 = open("/etc/shadowsocks.json")
@@ -33,7 +40,11 @@ def admin():
     return render_template('admin.html',title='admin',users=users)
 @app.route('/user',methods=["POST","GET"])
 def user():
-    return render_template('user.html',title='admin',users=users)
+    res = findUser(session["username"], session["password"])
+    if res:
+        return render_template('user.html',title='admin',users=users)
+    else:
+        return "access deny"
 @app.route('/register',methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
