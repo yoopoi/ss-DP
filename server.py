@@ -30,7 +30,7 @@ def check():
         if res:
             session["username"] = username
             session["password"] = password
-            return "10001"
+            return "1001"
         else:
             return "1000"
 @app.route('/admin',methods=['GET', 'POST'])

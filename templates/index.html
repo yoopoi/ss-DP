@@ -369,7 +369,7 @@ design by yazawa_nico 2019 niconiconi!
         </div>
     </body>
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    
+
     <script>
             $('.login').click(function () {
 
@@ -495,14 +495,15 @@ design by yazawa_nico 2019 niconiconi!
 
 
                               if(msg=="1001"){
-                                $('.login_a').text("登陆失败哦");
-                              }
-                              else {
-                                  $('.login_a').text("登陆成功啦!");
+                                $('.login_a').text("登陆成功啦!");
                                 setTimeout(function () {
                                     $('.del').click();
-                                    //window.location.href="login.php";
+                                    window.location.href="user.html";
                                 }, 1000);
+                              }
+                              else {
+                                  $('.login_a').text("登陆失败哦");
+
                               }
 
                           }, 1000);
