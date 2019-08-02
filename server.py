@@ -42,7 +42,9 @@ def admin():
     return render_template('admin.html',title='admin',users=users)
 @app.route('/user',methods=["POST","GET"])
 def user():
-    res = findUser(session["username"], session["password"])
+    username = session.get("username")
+    password = session.get("password")
+    res = findUser(username,password)
     if res:
         return render_template('user.html',title='admin',users=session["username"])
     else:
