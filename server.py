@@ -3,6 +3,7 @@ from flask import Flask
 from flask import request
 from flask import render_template
 from flask import session
+from datetime import timedelta
 import json
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "secret_key"
@@ -30,6 +31,8 @@ def check():
         if res:
             session["username"] = username
             session["password"] = password
+            session.permanent = True
+            app.permanent_session_lifetime = timedelta(minutes=10)
             return "1001"
         else:
             return "1000"
