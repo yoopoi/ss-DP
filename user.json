@@ -10,6 +10,6 @@
 	"8903":"default03123"
      },
     "timeout":300,
-    "method":"aes-256-cfb",
+    "method":"chacha20",
     "fast_open": false
 }

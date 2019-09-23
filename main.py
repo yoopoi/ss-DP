@@ -12,6 +12,7 @@ if len(sys.argv)==2:
         task_arr.append(Task("yum install m2crypto "))
         task_arr.append(Task("pip install shadowsocks "))
         task_arr.append(Task("pip install flask "))
+        #task_arr.append(Task("pip install python-dateutil"))
         user_file = open("user.json")
         user_list = json.load(user_file)
         user_json = json.dumps(user_list)
