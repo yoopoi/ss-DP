@@ -10,6 +10,6 @@
 	"8903":"default03123"
      },
     "timeout":300,
-    "method":"chacha20",
+    "method":"RC4-MD5",
     "fast_open": false
 }
